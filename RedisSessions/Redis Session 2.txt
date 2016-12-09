@@ -1,0 +1,58 @@
+test@redis-sundio2:~# redis-cli
+127.0.0.1:6379> PUBLISH news "Trump won"
+(integer) 1
+127.0.0.1:6379> PUBLISH news "Trump won2"
+(integer) 1
+127.0.0.1:6379> PUBLISH news2 "Trump won"
+(integer) 0
+127.0.0.1:6379> PUBLISH news "Obama left White House"
+(integer) 0
+127.0.0.1:6379> PUBLISH news: "Obama left White House"
+(integer) 1
+127.0.0.1:6379> PUBLISH news:usa "Obama left White House"
+(integer) 1
+127.0.0.1:6379> PUBLISH news:spain "Obama visited spain"
+(integer) 1
+127.0.0.1:6379> MULTI
+OK
+127.0.0.1:6379> INCRBY account-john 50
+QUEUED
+127.0.0.1:6379> INCRBY account-mary -50
+QUEUED
+127.0.0.1:6379> EXEC
+1) (integer) 75
+2) (integer) 50
+127.0.0.1:6379> WATCH account-john
+OK
+127.0.0.1:6379> MULTI
+OK
+127.0.0.1:6379> INCRBY account-mary -50
+QUEUED
+127.0.0.1:6379> INCRBY account-john 50
+QUEUED
+127.0.0.1:6379> EXEC
+1) (integer) 50
+2) (integer) 125
+127.0.0.1:6379> WATCH account-john
+OK
+127.0.0.1:6379> MULTI
+OK
+127.0.0.1:6379> INCRBY account-john 50
+QUEUED
+127.0.0.1:6379> INCRBY account-mary -50
+QUEUED
+127.0.0.1:6379> EXEC
+(nil)
+127.0.0.1:6379> GET acount-john
+(nil)
+127.0.0.1:6379> GET account-john
+"25"
+127.0.0.1:6379> MULTI
+OK
+127.0.0.1:6379> INCRBY account-john 50
+QUEUED
+127.0.0.1:6379> DISCARD
+OK
+127.0.0.1:6379> GET account-john
+"25"
+127.0.0.1:6379>
