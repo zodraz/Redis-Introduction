@@ -1,4 +1,4 @@
-# RedisIntroduction
+# Redis Introduction
 This repository is a collection of Redis samples regarding an introduction to Redis course. It contains the following items:
 
 1. PowerPoint presentation of the course (under the PPT folder). <br />  
