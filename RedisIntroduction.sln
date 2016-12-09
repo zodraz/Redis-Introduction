@@ -32,6 +32,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RedisSessions", "RedisSessi
 		RedisSessions\Redis Session 2.txt = RedisSessions\Redis Session 2.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PPT", "PPT", "{DECE76A6-EF1A-40A8-91C0-429E2141D7D6}"
+	ProjectSection(SolutionItems) = preProject
+		PPT\Introduction to Redis.pptx = PPT\Introduction to Redis.pptx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

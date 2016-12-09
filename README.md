@@ -1,4 +1,6 @@
 # RedisIntroduction
-This is a collection of Redis samples regarding the introduction to Redis course. 
+This repository is a collection of Redis samples regarding an introduction to Redis course. It contains the following items:
 
-There are the samples on VS2015 with StackExchange.Redis and also the plain Redis commands showed on the course.
+1-PowerPoint presentation of the course (under the PPT folder).
+2-Examples on the command line interface of Redis Server (under the RedisSessionsCLI folder).
+3-C# samples with StackExchange.Redis on the root folder. 
