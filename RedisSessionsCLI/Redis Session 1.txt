@@ -1,0 +1,276 @@
+test@redis-sundio2:~# redis-cli
+127.0.0.1:6379> SET user "John"
+OK
+127.0.0.1:6379> GET user
+"John"
+127.0.0.1:6379> EXISTS user
+(integer) 1
+127.0.0.1:6379> DUMP user
+"\x00\x04John\a\x00\xac\xdab\xaa\xc9A\xa1\x02"
+127.0.0.1:6379> EXPIRE user 1
+(integer) 1
+127.0.0.1:6379> EXISTS user
+(integer) 0
+127.0.0.1:6379> SET user "John"
+OK
+127.0.0.1:6379> APPEND user "Smith"
+(integer) 9
+127.0.0.1:6379> GET user
+"JohnSmith"
+127.0.0.1:6379> DEL user
+(integer) 1
+127.0.0.1:6379> GET user
+(nil)
+127.0.0.1:6379> SET user "John"
+OK
+127.0.0.1:6379> APPEND user " Smith"
+(integer) 10
+127.0.0.1:6379> GET user
+"John Smith"
+127.0.0.1:6379> MSET user:1 "John Craig" user:2 "George Paddy"
+OK
+127.0.0.1:6379> MGET user:1 user:2
+1) "John Craig"
+2) "George Paddy"
+127.0.0.1:6379> STRLEN user:1
+(integer) 10
+127.0.0.1:6379> GETRANGE user:1 5 10
+"Craig"
+127.0.0.1:6379> GETRANGE user:1 5 -1
+"Craig"
+127.0.0.1:6379> GETRANGE user:1 5 16
+"Craig"
+127.0.0.1:6379> GETRANGE user:1 -3 -1
+"aig"
+127.0.0.1:6379> SET cnt 1
+OK
+127.0.0.1:6379> INCr cnt
+(integer) 2
+127.0.0.1:6379> incr cnt
+(integer) 3
+127.0.0.1:6379> DECR cnt
+(integer) 2
+127.0.0.1:6379> LPUSH countries "Spain" "France" "Italy" "USA"
+(integer) 4
+127.0.0.1:6379> LRANGE countries 0 -1
+1) "USA"
+2) "Italy"
+3) "France"
+4) "Spain"
+127.0.0.1:6379> RPUSH countries "Colombia"
+(integer) 5
+127.0.0.1:6379> LRANGE countries 0 -1
+1) "USA"
+2) "Italy"
+3) "France"
+4) "Spain"
+5) "Colombia"
+127.0.0.1:6379> LREM countries 0 "Colombia"
+(integer) 1
+127.0.0.1:6379> LRANGE countries 0 -1
+1) "USA"
+2) "Italy"
+3) "France"
+4) "Spain"
+127.0.0.1:6379> LSET countries 0 Canada
+OK
+127.0.0.1:6379> LRANGE countries 0 -1
+1) "Canada"
+2) "Italy"
+3) "France"
+4) "Spain"
+127.0.0.1:6379> LINDEX countries 0
+"Canada"
+127.0.0.1:6379> LLEN countries
+(integer) 4
+127.0.0.1:6379> LPOP countries
+"Canada"
+127.0.0.1:6379> LRANGE countries 0 -1
+1) "Italy"
+2) "France"
+3) "Spain"
+127.0.0.1:6379> RPOP countries
+"Spain"
+127.0.0.1:6379> LRANGE countries 0 -1
+1) "Italy"
+2) "France"
+127.0.0.1:6379> RPUSH countries "Canada" "Spain" "USA"
+(integer) 5
+127.0.0.1:6379> LRANGE countries 0 -1
+1) "Italy"
+2) "France"
+3) "Canada"
+4) "Spain"
+5) "USA"
+127.0.0.1:6379> LTRIM countries 0 4
+OK
+127.0.0.1:6379> LRANGE countries 0 -1
+1) "Italy"
+2) "France"
+3) "Canada"
+4) "Spain"
+5) "USA"
+127.0.0.1:6379> LTRIM countries 0 3
+OK
+127.0.0.1:6379> LRANGE countries 0 -1
+1) "Italy"
+2) "France"
+3) "Canada"
+4) "Spain"
+127.0.0.1:6379> SADD cities "Barcelona" "Madrid" "Girona" "Salamanca" "Vic"
+(integer) 5
+127.0.0.1:6379> SCARD cities
+(integer) 5
+127.0.0.1:6379> SISMEMBER cities "Vic"
+(integer) 1
+127.0.0.1:6379> SISMEMBER cities "Vic2"
+(integer) 0
+127.0.0.1:6379> SMEMBERS cities
+1) "Madrid"
+2) "Girona"
+3) "Vic"
+4) "Barcelona"
+5) "Salamanca"
+127.0.0.1:6379> SREM cities "Vic"
+(integer) 1
+127.0.0.1:6379> SMEMBERS cities
+1) "Girona"
+2) "Madrid"
+3) "Barcelona"
+4) "Salamanca"
+127.0.0.1:6379> SADD visited_cities "Barcelona" "Vic" "Hospitalet"
+(integer) 3
+127.0.0.1:6379> SUNION cities visited_cities
+1) "Madrid"
+2) "Girona"
+3) "Vic"
+4) "Barcelona"
+5) "Salamanca"
+6) "Hospitalet"
+127.0.0.1:6379> SINTER cities visited_Cities
+(empty list or set)
+127.0.0.1:6379> SINTER cities visited_cities
+1) "Barcelona"
+127.0.0.1:6379> SDIFF cities visited_cities
+1) "Girona"
+2) "Salamanca"
+3) "Madrid"
+127.0.0.1:6379> SDIFF visited_cities cities
+1) "Vic"
+2) "Hospitalet"
+127.0.0.1:6379> zadd leaderboard 1 "John Smith" 2 "Claire Smith" 30 "George Roman"
+(integer) 3
+127.0.0.1:6379> zcard leaderboard
+(integer) 3
+127.0.0.1:6379> zcount leaderboard 1 20
+(integer) 2
+127.0.0.1:6379> zincrby leaderboard 1 "John Smith"
+"2"
+127.0.0.1:6379> zrange leaderboard 0 -1 WITHSCORES
+1) "Claire Smith"
+2) "2"
+3) "John Smith"
+4) "2"
+5) "George Roman"
+6) "30"
+127.0.0.1:6379> zrange leaderboard 0 -1
+1) "Claire Smith"
+2) "John Smith"
+3) "George Roman"
+127.0.0.1:6379> ZRANK leaderboard "John Smith"
+(integer) 1
+127.0.0.1:6379> ZRANK leaderboard "Claire Smith"
+(integer) 0
+127.0.0.1:6379> ZREM leaderboard "John Smith"
+(integer) 1
+127.0.0.1:6379> ZRANGE leaderboard 0 10
+1) "Claire Smith"
+2) "George Roman"
+127.0.0.1:6379> ZSCORE leaderboard "George Roman"
+"30"
+127.0.0.1:6379> HSET user_info name "John"
+(integer) 1
+127.0.0.1:6379> HMSET user_info name "John" surname "Smith" age 33 height "178cm"
+OK
+127.0.0.1:6379> HGET user_info name
+"John"
+127.0.0.1:6379> HMGET usre_info name surname
+1) (nil)
+2) (nil)
+127.0.0.1:6379> HMGET user_info name surname
+1) "John"
+2) "Smith"
+127.0.0.1:6379> HGETALL user_info
+1) "name"
+2) "John"
+3) "surname"
+4) "Smith"
+5) "age"
+6) "33"
+7) "height"
+8) "178cm"
+127.0.0.1:6379> HEXISTS user_info height
+(integer) 1
+127.0.0.1:6379> HINCRBY user_info age 10
+(integer) 43
+127.0.0.1:6379> HKEYS user_info
+1) "name"
+2) "surname"
+3) "age"
+4) "height"
+127.0.0.1:6379> HVALS user_info
+1) "John"
+2) "Smith"
+3) "43"
+4) "178cm"
+127.0.0.1:6379> HDEL user_info age
+(integer) 1
+127.0.0.1:6379> HKEYS user_info
+1) "name"
+2) "surname"
+3) "height"
+127.0.0.1:6379> PSUBSCRIBE news
+Reading messages... (press Ctrl-C to quit)
+1) "psubscribe"
+2) "news"
+3) (integer) 1
+1) "pmessage"
+2) "news"
+3) "news"
+4) "Trump won"
+1) "pmessage"
+2) "news"
+3) "news"
+4) "Trump won2"
+^C
+test@redis-sundio2:~# redis-cli
+127.0.0.1:6379> PSUBSCRIBE news:*
+Reading messages... (press Ctrl-C to quit)
+1) "psubscribe"
+2) "news:*"
+3) (integer) 1
+1) "pmessage"
+2) "news:*"
+3) "news:"
+4) "Obama left White House"
+1) "pmessage"
+2) "news:*"
+3) "news:usa"
+4) "Obama left White House"
+1) "pmessage"
+2) "news:*"
+3) "news:spain"
+4) "Obama visited spain"
+^C
+root@redis-sundio2:~# redis-cli
+127.0.0.1:6379> SET account-john 25
+OK
+127.0.0.1:6379> SET account-mary 50
+OK
+127.0.0.1:6379> INCRBY account-mary 50
+(integer) 100
+127.0.0.1:6379> INCRBY account-mary 50
+(integer) 100
+127.0.0.1:6379> SET account-john 25
+OK
+127.0.0.1:6379>
