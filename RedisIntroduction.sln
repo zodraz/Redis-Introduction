@@ -28,14 +28,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RedisSessions", "RedisSessions", "{D4BFD638-86A4-46A8-8291-ED9DF7152F6D}"
 	ProjectSection(SolutionItems) = preProject
-		RedisSessions\Redis Session 1.txt = RedisSessions\Redis Session 1.txt
-		RedisSessions\Redis Session 2.txt = RedisSessions\Redis Session 2.txt
+		RedisSessionsCLI\Redis Session 1.txt = RedisSessionsCLI\Redis Session 1.txt
+		RedisSessionsCLI\Redis Session 2.txt = RedisSessionsCLI\Redis Session 2.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PPT", "PPT", "{DECE76A6-EF1A-40A8-91C0-429E2141D7D6}"
 	ProjectSection(SolutionItems) = preProject
 		PPT\Introduction to Redis.pptx = PPT\Introduction to Redis.pptx
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisIntroduction.Geo", "RedisIntroduction.Geo\RedisIntroduction.Geo.csproj", "{18183487-BC91-435D-B3E7-463E712245B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{000D5746-7B04-4FE0-B814-67B425DD7A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{000D5746-7B04-4FE0-B814-67B425DD7A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{000D5746-7B04-4FE0-B814-67B425DD7A42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18183487-BC91-435D-B3E7-463E712245B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18183487-BC91-435D-B3E7-463E712245B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18183487-BC91-435D-B3E7-463E712245B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18183487-BC91-435D-B3E7-463E712245B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

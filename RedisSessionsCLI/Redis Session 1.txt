@@ -190,7 +190,7 @@ OK
 "30"
 127.0.0.1:6379> HSET user_info name "John"
 (integer) 1
-127.0.0.1:6379> HMSET user_info name "John" surname "Smith" age 33 height "178cm"
+127.0.0.1:6379> HMSET user_info name "John" surname "Smith" age 33 height "178cm                                                                                        "
 OK
 127.0.0.1:6379> HGET user_info name
 "John"
@@ -229,6 +229,33 @@ OK
 1) "name"
 2) "surname"
 3) "height"
+127.0.0.1:6379> GEOADD Spain 41.3933691 2.17884 Barcelona
+(integer) 1
+127.0.0.1:6379> GEOADD Spain 41.9803112 2.7836476 "Girona"
+(integer) 1
+127.0.0.1:6379> GEOADD Spain 41.9208051 2.1562139 "Vic"
+(integer) 1
+127.0.0.1:6379> GEOADD Spain 41.9716136 2.7696955 "Salt"
+(integer) 1
+127.0.0.1:6379> GEOPOS Spain Salt
+1) 1) "41.97161167860031128"
+   2) "2.76969614761257077"
+127.0.0.1:6379> GEODIST Spain Vic Salt
+"68468.3984"
+127.0.0.1:6379> GEORADIUS Spain 41.5 2.56 100 km
+1) "Barcelona"
+2) "Vic"
+3) "Salt"
+4) "Girona"
+127.0.0.1:6379> GEORADIUSBYMEMBER Spain Vic 10 km
+1) "Vic"
+127.0.0.1:6379> GEORADIUSBYMEMBER Spain Vic 50 km
+1) "Vic"
+127.0.0.1:6379> GEORADIUSBYMEMBER Spain Vic 80 km
+1) "Barcelona"
+2) "Vic"
+3) "Salt"
+4) "Girona"
 127.0.0.1:6379> PSUBSCRIBE news
 Reading messages... (press Ctrl-C to quit)
 1) "psubscribe"
